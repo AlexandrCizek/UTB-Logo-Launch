@@ -1,0 +1,152 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwf8amvgfe444"]
+
+[ext_resource type="Script" path="res://game_over_screen.gd" id="1_35wwx"]
+[ext_resource type="Texture2D" uid="uid://bhte7uesjvjcg" path="res://Assets/unmuted_icon.png" id="2_50b7g"]
+[ext_resource type="Texture2D" uid="uid://b3s881ox4sqja" path="res://Assets/high_score_label.png" id="2_gr580"]
+[ext_resource type="Texture2D" uid="uid://daqud0khl3fws" path="res://Assets/restart_icon.png" id="2_wqnpm"]
+[ext_resource type="Texture2D" uid="uid://4gy6m5gx0rxt" path="res://Assets/exit_icon.png" id="3_liamd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0k4sr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c0l3m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mjqv8"]
+
+[node name="GameOverScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_35wwx")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.282353, 0.282353, 0.282353, 1)
+offset_right = 1027.0
+offset_bottom = 1792.0
+
+[node name="ToggleMusicButton" type="Button" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.088
+anchor_top = 0.063
+anchor_right = 0.088
+anchor_bottom = 0.063
+offset_left = 773.888
+offset_top = 1534.1
+offset_right = 880.888
+offset_bottom = 1639.1
+theme_override_colors/font_color = Color(0.509804, 0.74902, 0.470588, 1)
+theme_override_colors/font_pressed_color = Color(0.509804, 0.74902, 0.470588, 1)
+theme_override_colors/font_hover_color = Color(0.509804, 0.74902, 0.470588, 1)
+theme_override_colors/font_focus_color = Color(0.509804, 0.74902, 0.470588, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 71
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0k4sr")
+icon = ExtResource("2_50b7g")
+flat = true
+icon_alignment = 2
+expand_icon = true
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -301.0
+offset_right = 512.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.94902, 0.419608, 0.113725, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 130
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = 409.0
+offset_right = 512.0
+offset_bottom = 505.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 70
+text = "High Score"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -671.0
+offset_bottom = -357.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 230
+text = "0"
+horizontal_alignment = 1
+
+[node name="HighScoreBanner" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(502, 212)
+rotation = -0.106574
+scale = Vector2(0.141649, 0.141649)
+texture = ExtResource("2_gr580")
+
+[node name="HighScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 494.0
+offset_bottom = 699.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.94902, 0.419608, 0.113725, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 80
+text = "0"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 221.0
+offset_top = 850.0
+offset_right = 456.0
+offset_bottom = 1085.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c0l3m")
+icon = ExtResource("2_wqnpm")
+flat = true
+expand_icon = true
+
+[node name="QuitButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 577.0
+offset_top = 850.0
+offset_right = 820.0
+offset_bottom = 1092.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mjqv8")
+icon = ExtResource("3_liamd")
+flat = true
+expand_icon = true
+
+[connection signal="pressed" from="ToggleMusicButton" to="." method="_on_toggle_music_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://w7ki2vy8vf7x"]
+
+[ext_resource type="Texture2D" uid="uid://c2p6fkg10ns8r" path="res://Logo/utb.png" id="1_qha7g"]
+[ext_resource type="Script" path="res://Logo/logo.gd" id="1_v1c3u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dfcpb"]
+radius = 36.0139
+
+[node name="Logo" type="Area2D" groups=["logo"]]
+script = ExtResource("1_v1c3u")
+
+[node name="LogoSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0.0760555, -1.07606)
+scale = Vector2(0.41772, 0.41772)
+texture = ExtResource("1_qha7g")
+
+[node name="LogoCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_dfcpb")

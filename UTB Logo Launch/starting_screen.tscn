@@ -1,0 +1,490 @@
+[gd_scene load_steps=17 format=3 uid="uid://dhhl5bi13i3c3"]
+
+[ext_resource type="Texture2D" uid="uid://il8x4fe4wjfy" path="res://Assets/background.jpg" id="1_e5r2n"]
+[ext_resource type="Script" path="res://starting_screen.gd" id="2_1vpq0"]
+[ext_resource type="FontFile" uid="uid://dmh6hr6njn31v" path="res://Fonts/Montserrat-Bold.ttf" id="2_8jvyl"]
+[ext_resource type="AudioStream" uid="uid://co3qew71buxpt" path="res://Audio/background_music.mp3" id="3_b4ke3"]
+[ext_resource type="Texture2D" uid="uid://cjmv2gxnrj65h" path="res://Assets/play_icon.png" id="3_jkn3q"]
+[ext_resource type="Texture2D" uid="uid://dmffl6o772hl3" path="res://Assets/black_circle.png" id="5_ajtxu"]
+[ext_resource type="Texture2D" uid="uid://bhte7uesjvjcg" path="res://Assets/unmuted_icon.png" id="5_g4w1t"]
+[ext_resource type="Texture2D" uid="uid://c2p6fkg10ns8r" path="res://Logo/utb.png" id="7_jtl02"]
+[ext_resource type="Texture2D" uid="uid://d1nshjv5kw5jv" path="res://Assets/key.png" id="9_o0i1m"]
+
+[sub_resource type="Animation" id="Animation_fb7jp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UtbLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.08165e-12, -400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LogoLaunchLabel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1800)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Content:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jkg12"]
+resource_name = "intro"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UtbLogo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.731707, 1.69788),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-75.701, 453.014), Vector2(216, 453)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UtbLogo:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.731707, 1.69788),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-8.37757, -6.54498]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UtbLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.326723),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, -400), Vector2(2.08165e-12, 65)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LogoLaunchLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.33213, 0.734886),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1800), Vector2(0, 369)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Content:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.69883, 2.47571),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xqfv1"]
+_data = {
+"RESET": SubResource("Animation_fb7jp"),
+"intro": SubResource("Animation_jkg12")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ns1ww"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_s0ys2"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_85q0g"]
+events = [SubResource("InputEventKey_s0ys2")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbvkw"]
+
+[node name="StartingScreen" type="TextureRect"]
+texture = ExtResource("1_e5r2n")
+script = ExtResource("2_1vpq0")
+
+[node name="IntroAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_xqfv1")
+}
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_b4ke3")
+volume_db = -25.0
+
+[node name="UtbLabel" type="Label" parent="."]
+layout_mode = 1
+offset_top = -400.0
+offset_right = 1024.0
+offset_bottom = -57.0
+theme_override_colors/font_color = Color(0.94902, 0.419608, 0.113725, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 70
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 280
+text = "UTB"
+horizontal_alignment = 1
+
+[node name="LogoLaunchLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = 904.0
+offset_right = 512.0
+offset_bottom = 1079.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.94902, 0.419608, 0.113725, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 120
+text = "L  go Launch"
+horizontal_alignment = 1
+
+[node name="UtbLogo" type="Sprite2D" parent="."]
+position = Vector2(216, 453)
+rotation = -6.54498
+scale = Vector2(0.531477, 0.523619)
+texture = ExtResource("7_jtl02")
+
+[node name="Content" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Controls" type="Control" parent="Content"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="KeyA" type="Sprite2D" parent="Content/Controls"]
+position = Vector2(253, 1017.81)
+scale = Vector2(0.303309, 0.303309)
+texture = ExtResource("9_o0i1m")
+
+[node name="LabelA" type="Label" parent="Content/Controls/KeyA"]
+offset_left = -80.863
+offset_top = -148.027
+offset_right = 95.137
+offset_bottom = 132.973
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 180
+text = "A"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="KeyD" type="Sprite2D" parent="Content/Controls"]
+position = Vector2(381, 1016.81)
+scale = Vector2(0.303309, 0.303309)
+texture = ExtResource("9_o0i1m")
+
+[node name="LabelD" type="Label" parent="Content/Controls/KeyD"]
+offset_left = -80.863
+offset_top = -148.027
+offset_right = 95.137
+offset_bottom = 132.973
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 180
+text = "D"
+horizontal_alignment = 1
+
+[node name="JumpLabel" type="Label" parent="Content/Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 443.0
+offset_top = 1050.81
+offset_right = 871.0
+offset_bottom = 1157.81
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 60
+text = "jump"
+horizontal_alignment = 1
+
+[node name="KeyW" type="Sprite2D" parent="Content/Controls"]
+position = Vector2(673, 1014.81)
+scale = Vector2(0.303309, 0.303309)
+texture = ExtResource("9_o0i1m")
+
+[node name="LabelW" type="Label" parent="Content/Controls/KeyW"]
+offset_left = -100.644
+offset_top = -148.027
+offset_right = 108.356
+offset_bottom = 132.973
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 180
+text = "W"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="FireLabel" type="Label" parent="Content/Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 269.0
+offset_top = 1232.81
+offset_right = 697.0
+offset_bottom = 1339.81
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 60
+text = "fire"
+horizontal_alignment = 1
+
+[node name="KeyF" type="Sprite2D" parent="Content/Controls"]
+position = Vector2(499, 1196.81)
+scale = Vector2(0.303309, 0.303309)
+texture = ExtResource("9_o0i1m")
+
+[node name="LabelF" type="Label" parent="Content/Controls/KeyF"]
+offset_left = -100.644
+offset_top = -148.027
+offset_right = 108.356
+offset_bottom = 132.973
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 180
+text = "F"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BombLabel" type="Label" parent="Content/Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 1444.81
+offset_right = 408.0
+offset_bottom = 1551.81
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 60
+text = "bomb"
+horizontal_alignment = 1
+
+[node name="Key6" type="Sprite2D" parent="Content/Controls"]
+position = Vector2(210, 1408.81)
+scale = Vector2(0.303309, 0.303309)
+texture = ExtResource("9_o0i1m")
+
+[node name="Label3" type="Label" parent="Content/Controls/Key6"]
+offset_left = -100.644
+offset_top = -148.027
+offset_right = 108.356
+offset_bottom = 132.973
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 180
+text = "X"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label8" type="Label" parent="Content/Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 558.0
+offset_top = 1444.81
+offset_right = 986.0
+offset_bottom = 1551.81
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 60
+text = "shield"
+horizontal_alignment = 1
+
+[node name="Key8" type="Sprite2D" parent="Content/Controls"]
+position = Vector2(788, 1408.81)
+scale = Vector2(0.303309, 0.303309)
+texture = ExtResource("9_o0i1m")
+
+[node name="Label3" type="Label" parent="Content/Controls/Key8"]
+offset_left = -100.644
+offset_top = -148.027
+offset_right = 108.356
+offset_bottom = 132.973
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 180
+text = "V"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label7" type="Label" parent="Content/Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 273.0
+offset_top = 1444.81
+offset_right = 701.0
+offset_bottom = 1551.81
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 60
+text = "magnet"
+horizontal_alignment = 1
+
+[node name="Key7" type="Sprite2D" parent="Content/Controls"]
+position = Vector2(503, 1408.81)
+scale = Vector2(0.303309, 0.303309)
+texture = ExtResource("9_o0i1m")
+
+[node name="Label3" type="Label" parent="Content/Controls/Key7"]
+offset_left = -100.644
+offset_top = -148.027
+offset_right = 108.356
+offset_bottom = 132.973
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 180
+text = "C"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MoveLabel" type="Label" parent="Content/Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 83.0
+offset_top = 1052.81
+offset_right = 511.0
+offset_bottom = 1159.81
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_8jvyl")
+theme_override_font_sizes/font_size = 60
+text = "move"
+horizontal_alignment = 1
+
+[node name="BlackCircle" type="Sprite2D" parent="Content"]
+position = Vector2(505.95, 706.05)
+scale = Vector2(0.519726, 0.519726)
+texture = ExtResource("5_ajtxu")
+
+[node name="StartGameButton" type="Button" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 366.0
+offset_top = 566.0
+offset_right = 607.0
+offset_bottom = 807.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ns1ww")
+shortcut = SubResource("Shortcut_85q0g")
+icon = ExtResource("3_jkn3q")
+flat = true
+expand_icon = true
+
+[node name="ToggleMusicButton" type="Button" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 848.0
+offset_top = 1646.0
+offset_right = 972.0
+offset_bottom = 1751.0
+theme_override_colors/font_color = Color(0.509804, 0.74902, 0.470588, 1)
+theme_override_colors/font_pressed_color = Color(0.509804, 0.74902, 0.470588, 1)
+theme_override_colors/font_hover_color = Color(0.509804, 0.74902, 0.470588, 1)
+theme_override_colors/font_focus_color = Color(0.509804, 0.74902, 0.470588, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 71
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gbvkw")
+icon = ExtResource("5_g4w1t")
+flat = true
+icon_alignment = 2
+expand_icon = true
+
+[connection signal="pressed" from="Content/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="Content/ToggleMusicButton" to="." method="_on_toggle_music_button_pressed"]
